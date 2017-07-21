@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 
 class ActiveUserComponent extends Component {
   render() {
+    if (!this.props.activeUser) {
+      return <div>Select a User</div>;
+    }
     return (
-      <p>{this.props.activeUser.name}</p>
+      <p>{this.props.activeUser.name || 'nemo'}</p>
     );
   }
 }
