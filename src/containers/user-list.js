@@ -10,6 +10,7 @@ class UserList extends Component {
     return this.props.users.map((user) => {
       return (
         <li
+          style={{ color: 'blue', cursor: 'pointer' }}
           key={user.name}
           onClick={() => this.props.selectUser(user)}
         >

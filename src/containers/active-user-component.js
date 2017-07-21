@@ -7,7 +7,7 @@ class ActiveUserComponent extends Component {
       return <div>Select a User</div>;
     }
     return (
-      <p>{this.props.activeUser.name || 'nemo'}</p>
+      <p>{this.props.activeUser.name+': '+this.props.activeUser.age}</p>
     );
   }
 }
