@@ -1,9 +1,15 @@
 import React from 'react';
-import Welcome from './welcome';
+import UserList from '../containers/user-list';
+import ActiveUserComponent from '../containers/active-user-component';
 
 function App() {
   return (
-    <Welcome name='User' />
+    <div>
+      <h1>My App</h1>
+      <UserList />
+      <ActiveUserComponent />
+
+    </div>
   );
 }
 
