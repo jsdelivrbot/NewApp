@@ -9,11 +9,11 @@ class ActiveUserComponent extends Component {
   }
 }
 
-function mstp(state) {
+const mstp = (state) => {
   return ({
     activeUser: state.user
   }
   );
-}
+};
 
 export default connect(mstp)(ActiveUserComponent);
