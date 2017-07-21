@@ -1,0 +1,10 @@
+This folder has a setup for:
+
+webpack
+webpack-dev-server
+react
+react-dom
+react-router
+redux
+babel (es2015 + react)
+eslint (rally-coding + with some global exclusions)
