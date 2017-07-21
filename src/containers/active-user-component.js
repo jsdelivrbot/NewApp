@@ -9,11 +9,11 @@ class ActiveUserComponent extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mstp(state) {
   return ({
     activeUser: state.user
   }
   );
 }
 
-export default connect(mapStateToProps)(ActiveUserComponent);
+export default connect(mstp)(ActiveUserComponent);
