@@ -4,3 +4,10 @@ export function selectUser(user) {
     payload: user
   };
 }
+
+export function addUser(user) {
+  return {
+    type: 'USER_ADDED',
+    payload: user
+  };
+}
