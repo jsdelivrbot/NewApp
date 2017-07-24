@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { addUser } from '../actions/index';
 
 class AddUser extends Component {
-  onSubmit(values) {
+  onSubmit(values, dispatch) {
+    // dispatch comes from redux-form
     // reset is a prop added by redux-form
     const { reset } = this.props;
-    console.log(values);
     reset();
+    return dispatch(addUser(values));
   }
 
   renderField(field) {
+    const className = `${field.meta.touched && field.meta.error ? 'hasErr' : ''}`;
     return (
-      <div>
+      <div className={className}>
         <label htmlFor={field.name}>{field.label}</label>
         <input type={field.type} {...field.input} />
 
@@ -21,7 +25,6 @@ class AddUser extends Component {
             <br />
             {field.meta.error}
           </span>))}
-
       </div>
     );
   }
@@ -50,7 +53,7 @@ class AddUser extends Component {
             label="Last Name"
           />
           <br />
-          {/* <Field
+          <Field
             name="email"
             component={this.renderField}
             type="email"
@@ -64,7 +67,7 @@ class AddUser extends Component {
             type="password"
             placeholder="password"
             label="password"
-          /> */}
+          />
         </div>
         <br />
         <button type="submit">Submit</button>
@@ -96,4 +99,6 @@ export default reduxForm({
   // must provide a unique form name so can use more than one form on a page.
   form: 'UserNewForm',
   validate
-})(AddUser);
+})(
+  connect(null, { addUser })(AddUser)
+);

@@ -1,7 +1,7 @@
 import React from 'react';
 import UserList from '../containers/user-list';
 import ActiveUserComponent from '../containers/active-user-component';
-import AddUser from '../containers/add_user_component';
+import AddUser from '../forms/add_user_form';
 
 function App() {
   return (
