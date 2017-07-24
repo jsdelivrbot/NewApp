@@ -1,36 +1,99 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { addUser } from '../actions/index';
+import { Field, reduxForm } from 'redux-form';
 
 class AddUser extends Component {
-  newUser() {
-    const newName = document.getElementById('name_input').value;
-    const newAge = document.getElementById('age_input').value;
-    return { name: newName, age: newAge };
+  onSubmit(values) {
+    // reset is a prop added by redux-form
+    const { reset } = this.props;
+    console.log(values);
+    reset();
+  }
+
+  renderField(field) {
+    return (
+      <div>
+        <label htmlFor={field.name}>{field.label}</label>
+        <input type={field.type} {...field.input} />
+
+        {field.meta.touched &&
+        ((field.meta.error &&
+          <span>
+            <br />
+            {field.meta.error}
+          </span>))}
+
+      </div>
+    );
   }
 
   render() {
+    // handleSubmit comes from redux-form
+    const { handleSubmit } = this.props;
+
     return (
-      <div>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <br />
-        <h3>Add a New User</h3>
-        <input type='text' id="name_input" placeholder="name" />
-        <input type='text' id="age_input" placeholder="age" />
-        <button onClick={() => this.props.addUser(this.newUser())}>Add</button>
-      </div>
+        <div>
+          <Field
+            name="first_name"
+            component={this.renderField}
+            type="text"
+            placeholder="First Name"
+            label="First Name"
+          />
+          <br />
+          <Field
+            name="last_name"
+            component={this.renderField}
+            type="text"
+            placeholder="Last Name"
+            label="Last Name"
+          />
+          <br />
+          {/* <Field
+            name="email"
+            component={this.renderField}
+            type="email"
+            placeholder="email"
+            label="email"
+          />
+          <br />
+          <Field
+            name="password"
+            component={this.renderField}
+            type="password"
+            placeholder="password"
+            label="password"
+          /> */}
+        </div>
+        <br />
+        <button type="submit">Submit</button>
+
+      </form>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    users: state.users
-  };
+function validate(values) {
+  const errors = {};
+  //validation
+  if (!values.first_name) {
+    errors.first_name = 'Enter a First Name';
+  }
+  if (!values.last_name) {
+    errors.last_name = 'Enter a Last Name';
+  }
+  if (!values.email) {
+    errors.email = 'Enter an email';
+  }
+  if (!values.password) {
+    errors.password = 'Enter a Password';
+  }
+  return errors;
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addUser: addUser }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddUser);
+export default reduxForm({
+  // must provide a unique form name so can use more than one form on a page.
+  form: 'UserNewForm',
+  validate
+})(AddUser);
