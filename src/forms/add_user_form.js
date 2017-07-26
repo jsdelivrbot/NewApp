@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { addUser } from '../actions/index';
+import './add_user_form.css';
 
 class AddUser extends Component {
   onSubmit(values, dispatch) {
@@ -17,7 +18,7 @@ class AddUser extends Component {
     return (
       <div className={className}>
         <label htmlFor={field.name}>{field.label}</label>
-        <input type={field.type} {...field.input} />
+        <input type={field.type} placeholder={field.placeholder} {...field.input} />
 
         {field.meta.touched &&
         ((field.meta.error &&

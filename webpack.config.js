@@ -7,17 +7,26 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devServer: {
-     contentBase: './dist'
+    contentBase: './dist'
   },
   module: {
-         loaders: [
-             {
-                 test: /\.js$/,
-                 loader: 'babel-loader',
-                 query: {
-                     presets: ['react', 'env']
-                 }
-             }
-         ]
-     }
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        //  query: {
+        //      presets: ['react', 'env']
+        //  } Dont seem to need this - presets are in babalrc
+      }, {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader'
+          }
+        ]
+      }
+    ]
+  }
 };
