@@ -5,7 +5,6 @@ const initialState = [
   // { first_name: 'Arther', last_name: 'Askey' }
 ];
 
-
 export default function (state = initialState, action) {
   switch (action.type) {
     case 'FETCH_USERS':
