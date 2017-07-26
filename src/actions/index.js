@@ -44,8 +44,8 @@ export function selectUser(user) {
 
 export function addUser(user) {
   return dispatch => {
-    const theKey = Users.push(user).key;
-    console.log(theKey);
+    const userRef = Users.push(user);
+    Users.child(userRef.key).update({ id: userRef.key });
     // Users.set({ id: theKey });
   };
 }

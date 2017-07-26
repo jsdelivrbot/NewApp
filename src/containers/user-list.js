@@ -11,10 +11,10 @@ class UserList extends Component {
       return (
         <li
           style={{ color: 'blue', cursor: 'pointer' }}
-          key={user.email}
+          key={user.id}
           onClick={() => this.props.selectUser(user)}
         >
-          {user.first_name}
+          {user.first_name} {user.last_name}
         </li>
       );
     });
