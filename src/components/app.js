@@ -24,15 +24,15 @@ class App extends Component {
 
 }
 
-function mapStateToProps(state) {
-  return {
-    users: state.users
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     users: state.users
+//   };
+// }
 
 function mapDispatchToProps(dispatch) {
   // makes this function available as a prop
   return bindActionCreators({ fetchUsers: fetchUsers }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

@@ -10,7 +10,7 @@ const config = {
 
 firebase.initializeApp(config);
 
-const Users = firebase.database().ref();
+const Users = firebase.database().ref().child('users');
 //
 // export function fetchUsers() {
 //   Posts.on('value', );
@@ -24,8 +24,9 @@ export function fetchUsers() {
   console.log('fetchUsers');
 
   return dispatch => {
-    Users.on('value', snapshot => {
-      console.log('dispatch');
+    Users.on('child_added', snapshot => {
+      console.log(snapshot.val());
+      console.log(snapshot.key);
       dispatch({
         type: 'FETCH_USERS',
         payload: snapshot.val()
@@ -42,7 +43,11 @@ export function selectUser(user) {
 }
 
 export function addUser(user) {
-  return dispatch => Users.push(user);
+  return dispatch => {
+    const theKey = Users.push(user).key;
+    console.log(theKey);
+    // Users.set({ id: theKey });
+  };
 }
 
 export function deleteUser(key) {
