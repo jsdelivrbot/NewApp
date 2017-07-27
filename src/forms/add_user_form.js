@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import faker from 'faker';
 import { connect } from 'react-redux';
 import { addUser } from '../actions/index';
 import './add_user_form.css';
 
+const firstName = faker.name.firstName();
+const lastName = faker.name.lastName();
+const email = (firstName+lastName+'@hm.net').toLowerCase();
+const password = faker.internet.password();
+
 class AddUser extends Component {
+  componentWillMount(){
+    this.props.initialize({
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      password: password
+    });
+  }
   onSubmit(values, dispatch) {
     // dispatch comes from redux-form
     // reset is a prop added by redux-form
@@ -18,7 +32,7 @@ class AddUser extends Component {
     return (
       <div className={className}>
         <label htmlFor={field.name}>{field.label}</label>
-        <input type={field.type} placeholder={field.placeholder} {...field.input} />
+        <input type={field.type} placeholder={firstName} {...field.input} />
 
         {field.meta.touched &&
         ((field.meta.error &&
@@ -44,6 +58,7 @@ class AddUser extends Component {
             type="text"
             placeholder="First Name"
             label="First Name"
+            wierd="Dorris"
           />
           <br />
           <Field
@@ -52,6 +67,7 @@ class AddUser extends Component {
             type="text"
             placeholder="Last Name"
             label="Last Name"
+            value="Dorris"
           />
           <br />
           <Field
