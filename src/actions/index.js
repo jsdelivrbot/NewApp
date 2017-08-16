@@ -1,11 +1,10 @@
-import firebase from 'firebase';
-// import axios from 'axios';
+import * as firebase from 'firebase';
 
 const config = {
-  apiKey: 'AIzaSyB_VkNQ9rlwKUg0RwC5EirnT6RJE1_WfOs',
-  authDomain: 'userlist-1112f.firebaseapp.com',
-  databaseURL: 'https://userlist-1112f.firebaseio.com',
-  storageBucket: 'userlist-1112f.appspot.com',
+    apiKey: 'AIzaSyB_VkNQ9rlwKUg0RwC5EirnT6RJE1_WfOs',
+    authDomain: 'userlist-1112f.firebaseapp.com',
+    databaseURL: 'https://userlist-1112f.firebaseio.com',
+    storageBucket: 'userlist-1112f.appspot.com',
 };
 
 firebase.initializeApp(config);
